@@ -17,11 +17,11 @@ EOT
     location                          = string
     name                              = string
     resource_group_name               = string
-    allow_branch_to_branch_traffic    = optional(bool, true)
-    disable_vpn_encryption            = optional(bool, false)
-    office365_local_breakout_category = optional(string, "None")
+    allow_branch_to_branch_traffic    = optional(bool)   # Default: true
+    disable_vpn_encryption            = optional(bool)   # Default: false
+    office365_local_breakout_category = optional(string) # Default: "None"
     tags                              = optional(map(string))
-    type                              = optional(string, "Standard")
+    type                              = optional(string) # Default: "Standard"
   }))
 }
 
