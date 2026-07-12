@@ -1,3 +1,7 @@
+output "virtual_wans_id" {
+  description = "Map of id values across all virtual_wans, keyed the same as var.virtual_wans"
+  value       = { for k, v in azurerm_virtual_wan.virtual_wans : k => v.id }
+}
 output "virtual_wans_allow_branch_to_branch_traffic" {
   description = "Map of allow_branch_to_branch_traffic values across all virtual_wans, keyed the same as var.virtual_wans"
   value       = { for k, v in azurerm_virtual_wan.virtual_wans : k => v.allow_branch_to_branch_traffic }
