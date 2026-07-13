@@ -17,24 +17,19 @@ EOT
     location                          = string
     name                              = string
     resource_group_name               = string
-    allow_branch_to_branch_traffic    = optional(bool)   # Default: true
-    disable_vpn_encryption            = optional(bool)   # Default: false
-    office365_local_breakout_category = optional(string) # Default: "None"
+    allow_branch_to_branch_traffic    = optional(bool)
+    disable_vpn_encryption            = optional(bool)
+    office365_local_breakout_category = optional(string)
     tags                              = optional(map(string))
-    type                              = optional(string) # Default: "Standard"
+    type                              = optional(string)
   }))
-  validation {
-    condition = alltrue([
-      for k, v in var.virtual_wans : (
-        length(v.name) > 0
-      )
-    ])
-    error_message = "must not be empty"
-  }
   # --- Unconfirmed validation candidates, derived from azurerm_virtual_wan's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
   # or a path that crosses a list-typed block (needs its own for_each wrapping).
   # Review, translate into a real validation{} block above, and delete once confirmed.
+  # path: name
+  #   condition: length(value) > 0
+  #   message:   must not be empty
   # path: resource_group_name
   #   condition: length(value) <= 90
   #   message:   [from resourcegroups.ValidateName: invalid when len(value) > 90]
